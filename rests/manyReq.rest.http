@@ -1,0 +1,7 @@
+GET http://localhost:3051/api
+
+###
+GET http://localhost:3051
+
+#####
+GET http://localhost:3051/ba

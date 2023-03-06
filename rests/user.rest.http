@@ -1,0 +1,29 @@
+GET http://localhost:3051/v1/services/getMethods
+###
+GET http://localhost:3051/v1/services/getStatics
+###
+POST http://localhost:3051/v1/users
+Content-Type: application/json
+
+{
+    "userId": 10,
+    "username": "910",
+    "email": "m10@gamil.com"
+}
+
+####regisUser
+POST  http://localhost:3051/v1/users
+Content-Type: application/json
+
+{
+    "email": "g@gmail.com"
+}
+
+##### verify otp
+POST http://localhost:3051/v1/users/verify
+Content-Type: application/json
+
+{
+    "email": "g@gmail.com",
+    "otp": "482119"
+}

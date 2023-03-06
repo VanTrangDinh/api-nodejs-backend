@@ -1,0 +1,101 @@
+##### add product
+PUT http://localhost:3051/v1/ecommerce/products
+Content-Type: application/json
+
+{
+  "product": {
+    "productId": 1001,
+    "code": "p1001",
+    "name": "Go to school",
+    "brand": "Education",
+    "description": "Essay to go",
+    "specs": [
+        {
+                "k": "author",
+                "v": "cre7"
+            },
+            {
+                "k": "pages",
+                "v": 300
+            }
+    ]
+  }  
+}
+
+#### inventory
+PUT http://localhost:3051/v1/ecommerce/inventories
+Content-Type: application/json
+
+{
+    "inventory": {
+
+        "productId": 1001,
+        "quantity": 1000,
+        "reservations": []
+    }       
+}
+
+### add to cart
+put http://localhost:3051/v1/ecommerce/addToCart
+Content-Type: application/json
+
+{
+     "productId": 1001,
+     "quantity": 2,
+     "userId": 1234  
+}
+
+
+
+
+
+
+
+
+
+#### add product
+# PUT http://localhost:3051/v1/ecommerce/products
+# Content-Type: application/json
+ 
+# {
+#     "product": {
+
+#         "productId": 1001,
+#         "code": "p-1001",
+#         "name": "book",
+#         "brand": "hallo",
+#         "description": "alao",
+#         "specs": [
+#             {
+#                 "k": "author",
+#                 "v": "cre7"
+#             },
+#             {
+#                 "k": "pages",
+#                 "v": 300
+#             }
+#         ]
+#     }
+# }
+# #### inventory
+# PUT http://localhost:3051/v1/ecommerce/inventories
+# Content-Type: application/json
+
+# {
+#     "inventory": {
+
+#         "productId": 1001,
+#         "quantity": 1000,
+#         "reservations": []
+#     }       
+# }
+
+# ### add to cart
+# put http://localhost:3051/v1/ecommerce/addToCart
+# Content-Type: application/json
+
+# {
+#      "productId": 1001,
+#      "quantity": 2,
+#      "userId": 1234  
+# }

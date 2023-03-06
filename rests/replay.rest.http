@@ -1,0 +1,5 @@
+@basicUrl = http://localhost:3051/v1/services
+
+#### get list players
+
+GET {{basicUrl}}/listPlayerByBlub?slub=manu&stime=0&nonce=0&sign=sign

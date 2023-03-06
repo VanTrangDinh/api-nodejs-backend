@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <!-- get a link by md5 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"
+      integrity="sha512-8pbzenDolL1l5OPSsoURCx9TEdMFTaeFipASVrMYKhuYtly+k3tcsQYliOEKTmuB1t7yuzAiVo+yd7SJz+ijFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //bai CORS
+      const keyToken = 'xxxxYYYYY';
+      const getRandomNonce = (num) => {
+        return Math.floor(
+          (Math.random() +
+            Math.floor(Math.random() * 9 + 1)) *
+            Math.pow(10, num - 1)
+        );
+      };
+      const genSign = (params) => {
+        const stime = Date.now(); // get time from request
+        const nonce = getRandomNonce(20).toString(); // giá trị chỉ request một lần rồi xóa nó đi
+
+        // client truyen
+        params.stime = stime;
+        params.nonce = nonce;
+        
+        params.keyToken = keyToken
+        params.v = 'v1' // backend doi version dinh ky
+                 
+
+        const sortKeys = [];
+
+        for (const key in params) {
+          if (key != 'sign') {
+            //{club: 'manu', sign: 'aaaaa'}
+            sortKeys.push(key); //club: 'manu'
+          }
+        }
+
+        sortKeys.sort(); //sort of ASCII
+        let paramsHolder = '';
+        sortKeys.forEach((key) => {
+          paramsHolder += key + paramsHolder[key]; //clubmanu
+        });
+        
+        params.sign = md5(paramsHolder).toString();
+        console.log(params, '?' + new URLSearchParams(params).toString())
+        return '?' + new URLSearchParams(params).toString();
+      };
+      const getData = async () => {
+        console.log(
+          await (
+            await fetch(
+              `http://localhost:3051/v1/services/listPlayerByBlub${genSign(
+                {
+                  club: 'manu',
+                }
+              )}`
+            )
+          ).json()
+        );
+      };
+
+      getData();
+    </script>
+  </body>
+</html>
